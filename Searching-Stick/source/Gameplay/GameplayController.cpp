@@ -10,7 +10,7 @@ namespace Gameplay
 
 	GameplayController::~GameplayController()
 	{
-		delete (gameplay_view);
+		destroy();
 	}
 
 	void GameplayController::initialize()
@@ -34,6 +34,6 @@ namespace Gameplay
 
 	void GameplayController::destroy()
 	{
-
+		delete (gameplay_view);
 	}
 }
