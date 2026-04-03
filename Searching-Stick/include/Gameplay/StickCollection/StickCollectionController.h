@@ -1,6 +1,8 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <vector>
+#include <thread>
 
 namespace Gameplay
 {
@@ -8,14 +10,14 @@ namespace Gameplay
 	{
 		class StickCollectionView;
 		class StickCollectionModel;
-		struct Stick;
 		enum class SearchType;
+		struct Stick;
 
 		class StickCollectionController
 		{
 		private:
 			StickCollectionView* collection_view;
-			StickCollectionModel* collection_medel;
+			StickCollectionModel* collection_model;
 
 			std::vector<Stick*> sticks;
 			
@@ -25,12 +27,12 @@ namespace Gameplay
 
 			float calculateStickWidth();
 
-			void updateStickPosition();
+			void updateSticksPosition();
 
 			void resetSticksColor();
 
 			void initializeSticksArray();
-			float calculateStickHieght(int array_pos);
+			float calculateStickHeight(int array_pos);
 
 			void destroy();
 
@@ -43,6 +45,7 @@ namespace Gameplay
 			void update();
 
 			void reset();
+			void searchElement(SearchType search_type);
 
 			SearchType getSearchType();
 
