@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <thread>
 
 namespace Gameplay
 {
@@ -27,6 +28,10 @@ namespace Gameplay
 			int number_of_comparisons;
 			int number_of_array_access;
 
+			int current_operation_delay;
+			
+			std::thread search_thread;
+
 			void initializeSticks();
 
 			float calculateStickWidth();
@@ -41,6 +46,10 @@ namespace Gameplay
 			void shuffleSticks();
 			void processLinearSeach();
 			void resetVariables();
+
+			void processSearchThreadState();
+
+			void joinThread();
 
 			void destroy();
 
@@ -61,6 +70,8 @@ namespace Gameplay
 
 			int getNumberOfComparisons();
 			int getNumberOfArrayAccess();
+
+			int getDelayMilliseconds();
 		};
 	}
 }
