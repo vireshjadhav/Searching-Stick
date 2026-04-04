@@ -1,3 +1,4 @@
+#include <random>
 #include "Gameplay/StickCollection/StickCollectionController.h"
 #include "Gameplay/StickCollection/StickCollectionModel.h"
 #include "Gameplay/StickCollection/StickCollectionView.h"
@@ -125,13 +126,23 @@ namespace Gameplay
 
 		void StickCollectionController::searchElement(SearchType search_type)
 		{
+			this->search_type = search_type;
 
+			switch (search_type)
+			{
+			case SearchType::LINEAR_SEARCH:
+				processLinearSeach();
+				break;
+			}
 		}
 
 		void StickCollectionController::reset()
 		{
+			shuffleSticks();
 			updateSticksPosition();
 			resetSticksColor();
+			resetSearchStick();
+			resetVariables();
 		}
 
 		SearchType StickCollectionController::getSearchType()
@@ -152,5 +163,56 @@ namespace Gameplay
 			delete(collection_view);
 			delete(collection_model);
 		}
+
+		void StickCollectionController::shuffleSticks()
+		{
+			// declare a variable 'device' of type std::random_device
+			// 'std::random_device is a random number generator that produces non-deterministic random numbers.
+			std::random_device device;
+			std::mt19937 randome_engine(device());
+
+			// shuffle the elements in the sticks collection using the random engine
+			std::shuffle(sticks.begin(), sticks.end(), randome_engine);
+		}
+
+		void StickCollectionController::resetSearchStick()
+		{
+			stick_to_search = sticks[std::rand() % sticks.size()];
+			stick_to_search->stick_view->setFillColor(collection_model->search_element_color);
+		}
+
+		void StickCollectionController::processLinearSeach()
+		{
+			for (int i = 0; i < sticks.size(); ++i)
+			{
+				number_of_array_access += 1;
+				number_of_comparisons++;
+
+				ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::COMPARE_SFX);
+
+				if (sticks[i] == stick_to_search)
+				{
+					stick_to_search->stick_view->setFillColor(collection_model->found_element_color);
+					stick_to_search = nullptr;
+					return;
+				}
+				else
+				{
+					sticks[i]->stick_view->setFillColor(collection_model->processing_element_color);
+					sticks[i]->stick_view->setFillColor(collection_model->element_color);
+				}
+
+			}
+		}
+
+		void StickCollectionController::resetVariables()
+		{
+			number_of_comparisons = 0;
+			number_of_array_access = 0;
+		}
+
+		int StickCollectionController::getNumberOfArrayAccess() { return number_of_array_access; }
+
+		int StickCollectionController::getNumberOfComparisons() { return number_of_comparisons; }
 	}
 }

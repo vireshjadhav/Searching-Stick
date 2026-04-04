@@ -32,5 +32,7 @@ namespace Gameplay
 		Collection::SearchType getCurrentSearchType();
 
 		int getNumberOfSticks();
+
+		void initializeRandomSeed();
 	};
 }

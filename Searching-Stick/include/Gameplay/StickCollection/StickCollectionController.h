@@ -2,7 +2,6 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include <thread>
 
 namespace Gameplay
 {
@@ -20,19 +19,28 @@ namespace Gameplay
 			StickCollectionModel* collection_model;
 
 			std::vector<Stick*> sticks;
+
+			Stick* stick_to_search;
 			
 			Collection::SearchType search_type;
+
+			int number_of_comparisons;
+			int number_of_array_access;
 
 			void initializeSticks();
 
 			float calculateStickWidth();
-
 			void updateSticksPosition();
 
 			void resetSticksColor();
+			void resetSearchStick();
 
 			void initializeSticksArray();
 			float calculateStickHeight(int array_pos);
+
+			void shuffleSticks();
+			void processLinearSeach();
+			void resetVariables();
 
 			void destroy();
 
@@ -47,9 +55,12 @@ namespace Gameplay
 			void reset();
 			void searchElement(SearchType search_type);
 
+			int getNumberOfSticks();
+
 			SearchType getSearchType();
 
-			int getNumberOfSticks();
+			int getNumberOfComparisons();
+			int getNumberOfArrayAccess();
 		};
 	}
 }
