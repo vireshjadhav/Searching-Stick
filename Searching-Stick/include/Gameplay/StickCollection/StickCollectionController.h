@@ -32,6 +32,8 @@ namespace Gameplay
 			
 			std::thread search_thread;
 
+			sf::String time_complexity;
+
 			void initializeSticks();
 
 			float calculateStickWidth();
@@ -72,6 +74,8 @@ namespace Gameplay
 			int getNumberOfArrayAccess();
 
 			int getDelayMilliseconds();
+
+			sf::String getTimeComplexity();
 		};
 	}
 }

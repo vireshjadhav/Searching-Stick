@@ -5,6 +5,7 @@
 #include "Gameplay/StickCollection/stick.h"
 #include "Gameplay/GameplayService.h"
 #include "Global/ServiceLocator.h"
+#include "Sound/SoundService.h"
 
 
 namespace Gameplay
@@ -138,7 +139,9 @@ namespace Gameplay
 			switch (search_type)			// checks the value of search_type
 			{
 			case SearchType::LINEAR_SEARCH:			// checks if the search type is LINEAR SEARCH
-				
+			
+				time_complexity = "O(n)";
+
 				// obtains delay for linear search
 				current_operation_delay = collection_model->linear_search_delay;
 
@@ -240,6 +243,8 @@ namespace Gameplay
 
 		SearchType StickCollectionController::getSearchType() { return search_type; }
 
+		sf::String StickCollectionController::getTimeComplexity() { return time_complexity; }
+
 		void StickCollectionController::destroy()
 		{
 			if (search_thread.joinable()) search_thread.join();
@@ -253,6 +258,5 @@ namespace Gameplay
 			delete(collection_view);
 			delete(collection_model);
 		}
-
 	}
 }
