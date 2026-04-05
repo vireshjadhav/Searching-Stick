@@ -158,6 +158,7 @@ namespace UI
 				break;
 
 			case Gameplay::Collection::SearchType::BINARY_SEARCH:
+				search_type_text->setText("Binary Search");
 				break;
 			}
 
