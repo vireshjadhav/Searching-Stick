@@ -24,13 +24,12 @@ namespace Gameplay
 			Stick* stick_to_search;
 			
 			Collection::SearchType search_type;
+			std::thread search_thread;
 
 			int number_of_comparisons;
 			int number_of_array_access;
-
 			int current_operation_delay;
-			
-			std::thread search_thread;
+			int delay_in_ms;
 
 			sf::String time_complexity;
 
@@ -40,18 +39,23 @@ namespace Gameplay
 			void updateSticksPosition();
 
 			void resetSticksColor();
+			void resetVariables();
 			void resetSearchStick();
 
 			void initializeSticksArray();
 			float calculateStickHeight(int array_pos);
 
-			void shuffleSticks();
-			void processLinearSearch();
-			void resetVariables();
+			void joinThread();
 
+			void sortElements();
+
+			void shuffleSticks();
+
+			void processLinearSearch();
+			void processBinarySearch();
 			void processSearchThreadState();
 
-			void joinThread();
+			bool compareElementsByData(const Stick* a, const Stick* b) const;
 
 			void destroy();
 
