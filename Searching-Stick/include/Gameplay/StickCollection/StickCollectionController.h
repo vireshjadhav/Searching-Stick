@@ -46,7 +46,7 @@ namespace Gameplay
 			float calculateStickHeight(int array_pos);
 
 			void shuffleSticks();
-			void processLinearSeach();
+			void processLinearSearch();
 			void resetVariables();
 
 			void processSearchThreadState();

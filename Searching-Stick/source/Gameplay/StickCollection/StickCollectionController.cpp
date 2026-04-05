@@ -147,7 +147,7 @@ namespace Gameplay
 
 				// a new thread, 'search_thread' is created to execute the 'processLinearSearch'
 				// 'this' keyword is passed to provide the context of the current 'StickCollectionContoller' object, allowing 'processLinearSearch' to access its data
-				search_thread = std::thread(&StickCollectionController::processLinearSeach, this);
+				search_thread = std::thread(&StickCollectionController::processLinearSearch, this);
 				break;
 			}
 		}
@@ -181,7 +181,7 @@ namespace Gameplay
 			stick_to_search->stick_view->setFillColor(collection_model->search_element_color);
 		}
 
-		void StickCollectionController::processLinearSeach()
+		void StickCollectionController::processLinearSearch()
 		{
 			Sound::SoundService* sound_service = Global::ServiceLocator::getInstance()->getSoundService();
 
