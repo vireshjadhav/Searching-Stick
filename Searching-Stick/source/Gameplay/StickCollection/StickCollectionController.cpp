@@ -87,7 +87,7 @@ namespace Gameplay
 			float total_spacing = collection_model->space_percentage * total_space;
 
 			// Calculate the space between each stick
-			float space_between = total_spacing / (collection_model->number_of_elements - 1);
+			float space_between = total_spacing / (collection_model->number_of_elements + 1);
 			collection_model->setElementSpacing(space_between);
 
 			// Calculate the remaining space for the rectangles
@@ -111,7 +111,7 @@ namespace Gameplay
 			{
 				float x_position = (i * sticks[i]->stick_view->getSize().x) + ((i + 1) * collection_model->elements_spacing);
 
-				float y_position = collection_model->element_y_poition - sticks[i]->stick_view->getSize().y;
+				float y_position = collection_model->element_y_position - sticks[i]->stick_view->getSize().y;
 
 				sticks[i]->stick_view->setPosition(sf::Vector2f(x_position, y_position));
 			}

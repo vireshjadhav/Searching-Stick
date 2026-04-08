@@ -17,7 +17,7 @@ namespace Gameplay
 		public:
 			const float max_element_height = 820.0f;
 			float elements_spacing = 25.0f;
-			const float element_y_poition = 1020.0f;
+			const float element_y_position = 1020.0f;
 			float space_percentage = 0.50f;
 
 			const sf::Color element_color = sf::Color::White;
